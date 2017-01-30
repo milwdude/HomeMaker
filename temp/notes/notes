@@ -1,0 +1,100 @@
+ 
+
+
+# an easier way to denote 'user:group' when trying to 'chown' a file
+# since arch and ubuntu do things differently when assigning a user's default group
+# NOTE:	 for use only if called as sudo
+# ex: sudo chown $SUDO_USER: filename 
+ 
+ 
+$SUDO_USER:
+ 
+
+dialog based control of functions...
+
+
+
+Setup auto-mount of shared partition in /etc/fstab?
+
+add audio plugin paths to user's environment?
+
+add useful aliases to .bashrc?
+
+Setup configuration of kde 4?
+
+Setup configuration of plasma 5?
+
+Setup configuration of kde xfce?
+
+install gtk themes?
+
+install icon themes?
+
+Install and configure audio software?
+
+Create homedir simlinks?
+
+choice=$(kdialog --separate-output --checklist \
+	"CHOOSE ONE OR MORE COLORS:" \
+	1 "Setup auto-mount of shared partition in /etc/fstab?" off \
+	2 "Add audio plugin paths to user's environment?" off \
+	3 "Add useful aliases to .bashrc?" off \
+	4 "Setup configuration of kde 4?" off \
+	5 "Setup configuration of plasma 5?" off \
+	6 "Setup configuration of kde xfce?" off \
+	7 "install gtk themes?" off \	
+	8 "install icon themes?" off \
+	9 "Install and configure audio software?" off \
+	10 "Create homedir simlinks?" off \
+	11 "more" off \
+	12 "stuff" off);	
+
+if [ "$?" = 0 ]; then
+	if [ $(expr length "$choice") != 0 ]; then
+		for result in $choice
+			do
+				if [ $result = '1' ]; then
+					kdialog --msgbox "1";
+				fi;
+				if [ $result = '2' ]; then
+					kdialog --msgbox "2";
+				fi;
+				if [ $result = '3' ]; then
+					kdialog --msgbox "3";
+				fi;
+				if [ $result = '4' ]; then
+					kdialog --msgbox "4";
+				fi;
+				if [ $result = '5' ]; then
+					kdialog --msgbox "5";
+				fi;
+				if [ $result = '6' ]; then
+					kdialog --msgbox "6";
+				fi;
+				if [ $result = '7' ]; then
+					kdialog --msgbox "7";
+				fi;
+				if [ $result = '8' ]; then
+					kdialog --msgbox "8";
+				fi;
+				if [ $result = '9' ]; then
+					kdialog --msgbox "9";
+				fi;
+				if [ $result = '10' ]; then
+					kdialog --msgbox "10";
+				fi;
+				if [ $result = '11' ]; then
+					kdialog --msgbox "11";
+				fi;
+				if [ $result = '12' ]; then
+					kdialog --msgbox "12";
+				fi;
+			done
+	else
+		kdialog --sorry "NO SELECTION WAS MADE";
+	fi;
+elif [ "$?" = 1 ]; then
+	kdialog --sorry "YOU CHOSE CANCEL";
+else
+	kdialog --error "ERROR";
+fi;

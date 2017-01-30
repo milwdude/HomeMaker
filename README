@@ -1,0 +1,135 @@
+﻿
+YOU SHOULD READ ALL OF THIS DOCUMENT BEFORE RUNNING THIS SCRIPT! 
+
+NO REALLY, YOU SHOULD! 
+
+************************************************************************
+    
+What is HomeMaker?
+
+    In short, an express bus to Lazy Town.
+    
+    HomeMaker is a very basic script designed to automate all of the tedious 
+    little steps involved in setting up a new Linux installation, ensuring 
+    that all of the programs, configurations and settings I can't function 
+    without are in place and ready to go without having to manually do all 
+    of the typing needed to make that happen. I do a fair amount of distro 
+    hopping and I'm incredibly particular about how I want my home directory 
+    to function, so automating this process is a huge time-saver.
+
+    Most of this script (and the packages and repos it installs) is devoted 
+    to implementing changes that optimize a system for audio production, 
+    as well as changes that make it easier to manage resources on a multi-boot 
+    computer with multiple Linux installations, such as creating links within 
+    the home directory to a separate, common data partition.
+
+    This script utilizes various sub-scripts, files, and directories, the 
+    structure of which has been designed to facilitate organization, identification, 
+    and above all, customization and modulatiry. To that end, I have attempted 
+    to document (perhaps excessively) everything and anything, so that you 
+    (read: I) can figure out what's going on and how.
+    
+************************************************************************
+
+Why the Name?
+
+    Because it’s descriptive - which means I’m more likely to remember what 
+    it does three years from now when I’m working with even fewer brain 
+    cells than I have now. Among other things, the script transforms the 
+    barren home directory of a newly installed distribution into something 
+    I find more useful, more like... home. 
+    
+    And, in addition to being marginally clever, the name is undoubtedly 
+    easier than saying “That script that installs all that software, creates 
+    a bunch of symlinks, and changes a couple of configurations.”
+    
+************************************************************************
+    
+Considerations and Disclaimer
+
+    Have I done any rigorous testing? Duh... Lazy Town here, remember?
+    
+    But in the spirit of kindness, here's some important info:
+
+    This script *should* work on most arch-based systems (using official 
+    arch repos and the aur) and most Ubuntu-based systems (16.04 minimum). 
+    Other Distributions are not supported. 
+    
+    To speed up software installation the script may utilize a collection 
+    of pre-compiled binary packages in “pkg.tar.xz” format for installation 
+    by the “pacman” package manager, and/or pre-compiled binary packages 
+    in “deb” format for installation by the “dpkg” package manager. In addition, 
+    the script requires internet access so that it can download other packages 
+    as needed. This script is designed to configure and install packages 
+    compiled for 64-bit systems only, and some of the changes are intended 
+    to alter configurations only relevant to the KDE or XFCE desktop environments.
+
+    This script makes numerous changes to your system – including the installation 
+    of binary packages and the use of unofficial repositories. It also sets 
+    up symlinks that will work only if the source directories exist. As 
+    such, if you intend to use this script, you should inspect all of it, 
+    understand what it does, and alter it to suit your tastes or needs. 
+
+    I am not responsible for any damage this script may do to your system, 
+    your data, your hardware, your life or your mental state.
+    
+    That said, the only claim I can make is that using this script could 
+    possibly fuck up your entire system. Or possibly kill your hampster. 
+    Or it might make setting up your new home directory easier. It's a crap 
+    shoot really. Enjoy!
+
+************************************************************************
+
+* Gentle Translation (for those who unable to read between the lines)
+
+    This script implements changes I alone fancy. They include configurations 
+    that I find useful, and packages that I feel are indispensable. Syntax 
+    and coding choices reflect what I find most useful with regard to simplicity, 
+    clarity and ease of future alteration. This all works for ME, in a way 
+    that makes sense to ME. I don’t expect anyone to agree with, endorse 
+    or accept these choices. In fact, I think you’d be better served by 
+    implementing a version of this script that reflects your own tastes 
+    and preferences.
+
+    I am sharing this in the spirit of openness. I am sharing this with 
+    the desire to contribute in some small way to the greater good. Mostly, 
+    however, I am sharing this because a friend said “Hey, that’s kinda 
+    cool... how did you do that?”
+
+    If you can use this script (or any part of it) in a way that you consider 
+    useful, then I’m super happy I was able to add value to your existence!
+
+    If you believe something could or should be done differently, go ahead 
+    and do it however you think it should be done. 
+
+************************************************************************
+    
+* Blunt Translation (for those who still aren't getting it)
+
+    Feel free to use anything you find useful, but realize that your feedback 
+    is neither required nor desired.
+
+    If you believe this script can be improved, simplified or otherwise 
+    amended so as to increase its functionality or execution, you are free 
+    to apply said changes to your own implementation.
+
+    If you believe that I have any interest in hearing about your ideas 
+    or opinions, then by all means do kindly go fuck yourself. 
+
+    Opinions (as they say) are like assholes – and I’ve got one already, 
+    thanks!
+
+************************************************************************
+
+INSTRUCTIONS:
+
+    1. Decompress the HomeMaker.tar.gz tarball
+    
+    2. From the resulting HomeMaker directory, run the following in a terminal:
+    
+            sudo bash HomeMaker.sh
+        
+    3. Go have a cup of coffee (or whatever) and wait for the script to complete
+    
+    4. Reboot and enjoy!
+

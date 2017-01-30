@@ -1,0 +1,3 @@
+alias nemo='nemo --no-desktop %U'
+alias aptup='sudo apt update --allow-insecure-repositories; sudo apt upgrade --yes'
+alias snano='sudo nano'

@@ -1,0 +1,7 @@
+Before we continue, please make sure that all of the software <BR> 
+on your system is up to date. If you're on arch, you can do this <BR>
+by issuing the following at the command prompt: <BR> <BR>
+sudo pacman -Syu <BR> <BR>
+If using Ubuntu, then you can do: <BR> <BR>
+sudo apt update && sudo apt upgrade <BR><BR>
+Is your system up to date?

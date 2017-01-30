@@ -1,0 +1,93 @@
+General Flow
+
+1 - basic setup
+
+	*run tests (see resources/tests)
+    
+	*set/export environmental variables (see resources/envar-list)
+
+2 - install dependencies
+
+	*install all requirements using appropriate package manager (see resources/dependencies)
+        
+3 - setup /etc/fstab
+
+	A - create mountpoint '/media/joseph/shared-storage'
+                
+		*requires admin priviledges 
+                    
+		*uses $regUser to assign 'joseph', must be exported by the calling script (script #1)
+                
+	2. adds an entry to /etc/fstab using: cat info/etcfstab >> /etc/fstab
+                
+		*requires admin priviledges
+                    
+		*the file info/etcfstab must be present in the correct location
+                    
+02-setup-home-shared.sh
+        
+        
+03-home-toplevel-links.sh
+
+
+
+There are several directories within the root HomeMaker folder:
+
+	/architect		-subproject designed to help users create ther own customized version of the script
+
+	/assets		-generally binary application packages which may be difficult to easily install (customized compilations, not in default repos, etc)
+
+	/attic		-
+
+	/contractors	-
+
+	/overseer		-
+
+	/renovations	-
+
+	/scrapbooks	-
+
+	/skeletons	-
+
+	/vault		-
+
+HomeMaker
+
+	1. include qarma (or other) binary so that functionality of dialogs is 
+	guaranteed
+
+	2. use variables to select both source (h.m. datastore) and destination (target 
+	home dir) - this way the script should work in various environments (etc. 
+	portable usb installs, home dirs on other partitions, etc)
+
+	3. provide incremental confirmation dialogs for destructive options
+
+	4. create a builder script which allows user to build a custom HM assistant. 
+
+	(sub-project: HomeMaker Architect)
+
+	5. create a master list of all source files with accompanying descriptions.
+
+	6. lists of source files should be grouped together by application or task (i.e. 
+	console related files, themes for gtk3, personal shell scripts, etc) and saved 
+	as a ndividual "definition" files. each definition file should be given a 
+	unique, descriptive name. at run time, these definitions can be copied into a 
+	renovation directory, and any. definition found there will be included in the 
+	remodel.
+
+datastore directories;
+
+HomeMaker/
+the top levell- the entire HomeMaker project lives here
+
+
+HomeMaker/skeletons
+
+	various files that act as templates when setting up new Renovations at cetera. 
+	Also, a complete copy of the Homemaker project and archived form so that users 
+	can start anew without losing all of their existing data
+
+
+General description of the entire renovation process with pointers to the 
+included directories and Scripts, detailed descriptions
+
