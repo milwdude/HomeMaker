@@ -1,0 +1,177 @@
+STUB (stubs/aliases/la) 
+
+	alias la='ls -la'
+
+
+STUB (stubs/aliases/aptup)
+
+	alias aptup='sudo apt update --allow-insecure-repositories -y; sudo apt upgrade -y'
+
+
+STUB (stubs/aliases/pacup)
+
+alias pacup='sudo pacman -Syu'
+
+
+STUB (stubs/aliases/snano)
+
+	alias snano='sudo nano'
+
+
+STUB (stubs/exports/PS1)
+
+export PS1="\[$(tput bold)\]\[\033[38;5;33m\][\[$(tput sgr0)\]\[\033[38;5;206m\]\u\[$(tput sgr0)\]\[\033[38;5;33m\]]\[$(tput sgr0)\]\[\033[38;5;48m\]:\[$(tput sgr0)\]\[\033[38;5;81m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\n\[$(tput sgr0)\]\[\033[38;5;160m\]\\$\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;11m\]>\[$(tput sgr0)\]"
+
+
+STUB (stubs/exports/PATH)
+
+export PATH="$HOME/.bin:/usr/games:/home/joseph/devel/qt/5.8/gcc_64/bin:/opt/oracle-jdk-8/jdk1.8.0_131/bin:$PATH"
+
+
+STUB (stubs/exports/JAVA_HOME)
+
+export JAVA_HOME='/opt/oracle-jdk-8/jdk1.8.0_131/bin/java'
+
+
+STUB (stubs/exports/LXVST_PATH)
+
+export LXVST_PATH="/usr/lib/vst:/home/joseph/.vst"
+
+
+STUB (stubs/exports/LV2_PATH)
+
+export LV2_PATH="/usr/lib/lv2:/usr/local/lib/lv2:/home/joseph/.lv2"
+
+
+STUB (stubs/exports/LADSPA_PATH)
+
+export LADSPA_PATH="/usr/lib/ladspa"
+
+
+STUB (stubs/exports/VST_PATH)
+
+export VST_PATH="/usr/lib/vst:/home/joseph/.vst"
+
+SNIPPET (create .bash_exports and populate) 
+!TODO generate the file in a temporary location, then just cp it to $HOME !
+
+# create file ".bash_exports" in $HOME if not already present…
+
+if [ ! -f $HOME/.bash_exports ]; then
+    touch $HOME/.bash_exports
+fi
+
+# add variables to file ".bash_exports" by parsing any stubs present 
+# in "/stubs/exports"...
+
+for i in $(ls stubs/exports); do
+    cat stubs/exports/$i >> $HOME/.bash_exports
+done
+
+SNIPPET (source $HOME/.bash_aliases and $HOME/.bash_exports)
+!TODO create snippet to add the following onto $HOME/.profile !
+
+	# add code to $HOME/.profile which sources these files…
+
+if [ -f $HOME/.bash_aliases ]; then
+. $HOME/.bash_aliases
+fi  	
+ 
+if [ -f $HOME/.bash_exports ]; then	
+. $HOME/.bash_exports
+fi  
+
+!TODO evaluate the following and decide if we still want to use any or all of it !
+
+# test: arch or ubuntu?
+archlinuxsystem="/usr/bin/pacman"
+debianlinuxsystem="/usr/bin/dpkg"
+ 
+if [ -e "$archlinuxsystem" ] ; then
+	thisSys="arch"
+elif [ -e "$debianlinuxsystem" ] ; then
+            thisSys="ubuntu"
+else
+            $jDialog --title "A Slight Problem"  --error  "We are not running under Arch, nor Ubuntu!"
+            exit 1
+fi
+export thisSys
+
+
+**********************************************
+
+# make sure we're up to date
+# warning text to display
+ 
+txtWarning1=$(cat $tpwD/text/message-update-before-continue)
+ 
+# the dialog box to display it
+ 
+$jDialog --title "Before we proceed..." --continue-label "We're good. Let's go!"\
+            	--cancel-label "Stop right there! I need to update!"\
+            	--warningcontinuecancel  "$txtWarning1";
+ 
+if [ "$?" = 1 ]; then
+$jDialog --sorry "Exiting! Restart HomeMaker after system is updated...";
+exit 1
+fi
+ 
+**********************************************
+ 
+# test: is wget installed? if not, make it so
+ 
+installedWget="/usr/bin/wget"
+ 
+if [ ! -e "$installedWget" ] ; then
+
+if [ thisSys="arch" ] ; then
+
+    		$jDialog --passivepopup "Installing wget... one moment" 3 &
+
+$jGksudo pacman -S wget ;
+
+$jDialog --passivepopup "wget has been installed!" 2 ;
+
+elif [ thisSys="ubuntu" ] ; then
+
+    		$jDialog --passivepopup "Installing wget... one moment" 3 &
+
+$jGksudo apt install --yes wget ;
+
+$jDialog --passivepopup "wget has been installed!" 2 ;
+
+Fi
+
+fi
+
+	**********************************************
+
+# record the absolute path of the folder we're in
+ 
+tpwD=$(pwd)
+export tpwD
+ 
+	**********************************************
+
+# set the path of the scripts folder based on the path above
+ 
+scriptDir="$tpwD/scripts"
+export scriptDir
+
+
+!TODO decide if we still want to utilize the following in the script !
+
+# set the path of the included kdialog executable based on the path above
+ 
+jDialog="$tpwD/bin/kdialog"
+export jDialog
+ 
+# set the path of the included gksudo executable based on the path above
+ 
+jGksudo="$tpwD/bin/gksudo"
+export jGksudo
+ 
+# set the path of the included yad executable based on the path above
+ 
+jYad="$tpwD/bin/yad"
+export jYad
